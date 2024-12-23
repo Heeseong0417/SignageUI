@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7.061 7.061">
+  <defs>
+    <style>
+      .a {
+        fill: none;
+        stroke: #707070;
+        stroke-width: 1.5px;
+      }
+    </style>
+  </defs>
+  <!-- 윗부분의 대각선 -->
+  <line class="a" x1="3.53" y1="0.53" x2="6.53" y2="3.53"/>
+  <!-- 아랫부분의 대각선 -->
+  <line class="a" x1="3.53" y1="6.53" x2="6.53" y2="3.53"/>
+</svg>

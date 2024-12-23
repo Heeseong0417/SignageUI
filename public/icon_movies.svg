@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 60 60">
+  <g id="icon_movie" transform="translate(-15 6)">
+    <rect id="사각형_661" data-name="사각형 661" width="60" height="60" transform="translate(15 -6)" fill="red" opacity="0"/>
+    <rect id="사각형_471" data-name="사각형 471" width="54.807" height="39.582" rx="5" transform="translate(17.432 -3.506)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+    <path id="패스_294" data-name="패스 294" d="M8.289,4.058V22.331l14.09-9.138Z" transform="translate(31.529 3.09)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+    <g id="그룹_312" data-name="그룹 312" transform="translate(17.442 42.49)">
+      <g id="그룹_431" data-name="그룹 431" transform="translate(0 0)">
+        <path id="패스_364" data-name="패스 364" d="M.961,0H30.615" transform="translate(-0.961 4.761)" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="3"/>
+        <path id="패스_363" data-name="패스 363" d="M0,0H7.729" transform="translate(46.656 4.761)" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="3"/>
+        <ellipse id="타원_15" data-name="타원 15" cx="4.761" cy="4.761" rx="4.761" ry="4.761" transform="translate(29.654)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+      </g>
+    </g>
+  </g>
+</svg>
