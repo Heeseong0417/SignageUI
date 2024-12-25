@@ -7,9 +7,13 @@ import PU from "../../../components/popup/popup"
 import { Dialog, } from "@reach/dialog";
 import CustomDialog from "../../../components/popup/popup";
 import { useRouter } from "next/navigation";
+import axios from "axios";
+import { headers, IP } from "../../../config/IP";
+import { getAuthData, setAuthData } from "../../../config/cookies";
+import { hasNoEmptyValues } from "../../../config/tool";
 
 const Login=()=>{
-  const [user, setuser] = useState<any>({role:"user",name:"",birth:"",userId:"",phone:"",phoneAuth:"",email:"",bn:"",brn:"",password:"",repassword:""})
+  const [user, setuser] = useState<any>({role:"user",email:"",birth:"",phone:"",phoneAuth:""})
   const [admin,setadmin] =useState<any>({role:"admin",affiliation:"",name:"",birth:"",userId:"",phone:"",phoneAuth:"",email:"",password:"",repassword:""})
 function startCountdown(durationInSeconds: any) {
   let remainingTime = durationInSeconds;
@@ -55,11 +59,36 @@ const openDialog = () => setShowDialog(true);
 const closeDialog = () => setShowDialog(false);
 const [digText, setdigText] = useState("")
 const [selectRole, setselectRole] = useState("일반회원")
+const [findId, setfindId] = useState("")
+    
+const sendApi=()=>{
+ 
+  let idtable = {"email":user.email, "dob":user.birth,"phonenumber":user.phone}
+  if(hasNoEmptyValues(idtable)){
+  axios.post(IP+"/api/auth/login",{"email":user.email, "dob":user.birth,"phonenumber":user.phone},{headers:headers
+  
+}).then((response)=>{
+
+  if(response.data.result==="success"){
+
+setfindId(()=>response.data.nickname)
+}else{
+    alert("아이디 찾기에 실패했습니다. 다시시도해주세요!")
+  }
+  }).catch((err)=>{
+
+    alert("아이디 찾기에 실패했습니다. 다시시도해주세요!")})    
+  }else{
+    
+  }
+
+
+}    
     return (<>
 
 <div className="h-full w-[90%] mx-[5%] lg:w-[70%] lg:mx-[15%] my-[5%] flex flex-col justify-center items-center ">
 <StepTtile title={"아이디 찾기"} subtitle={"본인인증 후 아이디를 확인하실 수 있습니다."} subtitlecolor={"#000000"}/>
-      <StepNav list={["비밀번호 찾기"]}/>
+      <StepNav list={["아이디 찾기"]}/>
 
 
       <div className="w-full bg-[#000000] h-[2px]"/> 
@@ -93,14 +122,14 @@ const [selectRole, setselectRole] = useState("일반회원")
 
       
       </>))}
-      <div className="w-full  flex flex-row items-center text-sm font-bold space-x-2 justify-center"><p className="">귀하의 아이디는 </p><div className="bg-[#E9F6FF] text-[#004195] py-[0.5rem] px-[2rem] min-w-[10rem] flex justify-center items-center">abc123</div><p> 입니다.</p></div>
+      <div className="w-full my-[2%] flex flex-row items-center text-sm font-bold space-x-2 justify-center"><p className="">귀하의 아이디는 </p><div className="bg-[#E9F6FF] text-[#004195] py-[0.5rem] min-h-[1.5rem] px-[2rem] min-w-[10rem] flex justify-center items-center">{findId}</div><p> 입니다.</p></div>
       </div>
      
       </div>
       
       <div className="w-full flex flex-row items-center justify-center">
       <button onClick={()=>{
-        router.push("/Login")
+        sendApi()
       }} className={` bg-gradient-to-r rounded-md hover:scale-110 from-[#0F8EFD] to-[#3DD87A] hover:bg-[#0F8EFD] text-white w-[10rem] lg:min-w-[14rem] z-[55] px-[2rem] py-[0.8rem] my-[5%]  font-medium }`}>확인</button>
       
       </div>

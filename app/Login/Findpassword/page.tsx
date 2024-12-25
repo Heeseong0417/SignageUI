@@ -7,9 +7,12 @@ import PU from "../../../components/popup/popup"
 import { Dialog, } from "@reach/dialog";
 import CustomDialog from "../../../components/popup/popup";
 import { useRouter } from "next/navigation";
+import { hasNoEmptyValues } from "../../../config/tool";
+import axios from "axios";
+import { headers, IP } from "../../../config/IP";
 
 const Login=()=>{
-  const [user, setuser] = useState<any>({role:"user",name:"",birth:"",userId:"",phone:"",phoneAuth:"",email:"",bn:"",brn:"",password:"",repassword:""})
+  const [user, setuser] = useState<any>({role:"user",userId:"",email:"",birth:"",phone:"",phoneAuth:""})
   const [admin,setadmin] =useState<any>({role:"admin",affiliation:"",name:"",birth:"",userId:"",phone:"",phoneAuth:"",email:"",password:"",repassword:""})
 function startCountdown(durationInSeconds: any) {
   let remainingTime = durationInSeconds;
@@ -55,7 +58,33 @@ const openDialog = () => setShowDialog(true);
 const closeDialog = () => setShowDialog(false);
 const [digText, setdigText] = useState("")
 const [selectRole, setselectRole] = useState("일반회원")
-    return (<>
+const [findPass, setfindPass] = useState("")
+const sendApi=()=>{
+ 
+  let idtable = {"email":user.email, "dob":user.birth,"phonenumber":user.phone}
+  if(hasNoEmptyValues(idtable)){
+  axios.post(IP+"/api/auth/login",{"email":user.email, "dob":user.birth,"phonenumber":user.phone},{headers:headers
+  
+}).then((response)=>{
+
+  if(response.data.result==="success"){
+
+    
+    
+}else{
+    alert("아이디 찾기에 실패했습니다. 다시시도해주세요!")
+  }
+  }).catch((err)=>{
+
+    alert("아이디 찾기에 실패했습니다. 다시시도해주세요!")})    
+  }else{
+    
+  }
+
+
+}    
+
+   return (<>
 
     <div className="h-full w-[90%] mx-[5%] lg:w-[70%] lg:mx-[15%] my-[5%] flex flex-col justify-center items-center ">
 <StepTtile title={"비밀번호 찾기"} subtitle={"본인인증 후 비밀번호를 확인하실 수 있습니다."} subtitlecolor={"#000000"}/>

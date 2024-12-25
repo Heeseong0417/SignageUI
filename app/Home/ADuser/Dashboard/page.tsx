@@ -31,6 +31,8 @@ import i2560 from "../../../../public/800x2560.png"
 import i1280 from "../../../../public/800x1280.png"
 import Icon_movie from "../../../../public/icon_movie.svg"
 import Icon_image from "../../../../public/icon_image.svg"
+import axios from "axios";
+import { headers, IP } from "../../../../config/IP";
 const Page=()=>{
   // 현재 날짜 가져오기
 const today = new Date();
@@ -153,6 +155,7 @@ function paginateArray(array: string | any[], page: number, pageSize = 10) {
   // Return the sliced portion of the array
   return array.slice(startIndex, endIndex);
 }
+
 
     return (<>
 
