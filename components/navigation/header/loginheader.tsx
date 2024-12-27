@@ -92,19 +92,27 @@ const Header= ({children}:any)=>{
   }, []); // auth가 변경될 때마다 실행
   
   const clickMenu = (logintf:any,link:any)=>{
-    if (user?.user_type==="ADMIN"||user?.user_type==="GENERAL"||user?.user_type==="OPERATOR" || logintf===false){
+    if (logintf===false){
+      setSelectItems(()=>"홈")
+      setmenutoggle(()=>false)
+      router.push(link)    
+    }else{
+     if (user?.user_type==="ADMIN"||user?.user_type==="GENERAL"||user?.user_type==="OPERATOR"||user?.user_type==="USER"){
       setSelectItems(()=>"홈")
     setmenutoggle(()=>false)
     router.push(link)    
     }else{
  alert("로그인이 필요한 서비스입니다!")
+ router.push("/Login")    
+    }   
     }
+  
 
   }
-
   
     return(<>
     <header className="">
+
      <div className="h-[4.25rem]  flex items-center justify-between w-[90%] px-[5%] lg:w-[70%] lg:mx-[15%] flex-row">
 
  <div onClick={()=>router.push("/")} className=" cursor-pointer mx-2 flex flex-col lg:flex-row  items-center ">

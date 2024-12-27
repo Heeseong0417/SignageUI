@@ -72,11 +72,11 @@ const sendApi=()=>{
     
     
 }else{
-    alert("아이디 찾기에 실패했습니다. 다시시도해주세요!")
+    alert("비밀번호 찾기에 실패했습니다. 다시시도해주세요!")
   }
   }).catch((err)=>{
 
-    alert("아이디 찾기에 실패했습니다. 다시시도해주세요!")})    
+    alert("비밀번호 찾기에 실패했습니다. 다시시도해주세요!")})    
   }else{
     
   }
@@ -128,6 +128,7 @@ const sendApi=()=>{
       
       <div className="w-full flex flex-row items-center justify-center">
       <button onClick={()=>{
+        sendApi()
         setdigText(()=>"이메일로 비밀번호 변경 링크를 보내드렸습니다.")
         openDialog()
         router.push("/Login")

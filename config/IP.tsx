@@ -1,5 +1,5 @@
 
-const IP = "http://localhost:5000"
+const IP = "http://valiantdata.iptime.org:5001"
 const headersIP=(token:any)=> {
     return {
     'Content-Type': 'application/json', // 요청 본문의 타입

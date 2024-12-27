@@ -40,7 +40,7 @@ const [SelectItems, setSelectItems] = useState("홈")
     settoggle_user(!toggle_user)
     
     let tf = toggle_user
-    setuser((prev: any)=>{return{...prev,userId:tf?"ADMIN":"user"}})
+    setuser((prev: any)=>{return{...prev,user_type:tf?"ADMIN":"user"}})
     // 로그인 성공 후 데이터를 저장
     dispatch(
       setAuthData({
@@ -89,18 +89,26 @@ const [SelectItems, setSelectItems] = useState("홈")
   
   }, []); // auth가 변경될 때마다 실행
   const clickMenu = (logintf:any,link:any)=>{
-    if (user?.user_type==="ADMIN"||user?.user_type==="GENERAL"||user?.user_type==="OPERATOR" || logintf===false){
+    if (logintf===false){
+      setSelectItems(()=>"홈")
+      setmenutoggle(()=>false)
+      router.push(link)    
+    }else{
+     if (user?.user_type==="ADMIN"||user?.user_type==="GENERAL"||user?.user_type==="OPERATOR"||user?.user_type==="USER"){
       setSelectItems(()=>"홈")
     setmenutoggle(()=>false)
     router.push(link)    
     }else{
  alert("로그인이 필요한 서비스입니다!")
+ router.push("/Login")    
+    }   
     }
+  
 
   }
   
     return(<>
-   
+       
     <div className={`w-full h-full ${menutoggle?"fixed lg:bg-transparent bg-gray-600 lg:opacity-100 opacity-60":""}`}/>
     <header className={`w-full h-full ${menutoggle?"fixed":""}`}>
      <div className="h-[4.25rem] z-[9999] flex items-center justify-between w-[90%] px-[5%] lg:w-[70%] lg:mx-[15%] flex-row">

@@ -296,6 +296,7 @@ function paginateArray(array: string | any[], page: number, pageSize = 10) {
       <GridTitle title={params["name"]} subtitle={ADlist[params["status"]]}/>
 
   <section className="w-full flex flex-col min-h-[20rem]">
+    
 {[params].map((items:any)=>(<>
 
       <div style={{zoom:zoom}} className="grid grid-cols-5 mt-[2%] w-full ">

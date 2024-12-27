@@ -231,18 +231,27 @@ const sendApi=()=>{
     "page": page,
     "per_page": 10
 }
- 
-  axios.get(IP+" /api/camp/list/"+auth.userId,{params:pagedata,headers:headersIP(auth.accessToken)}).then((res: any)=>{
-    if(res.data.result==="success"){
+
+
+axios.request({
+  method: 'GET',
+  url: IP+"/api/camp/list/"+auth.userId,
+  data: pagedata,
+  headers:headersIP(auth.accessToken)
+}).then(res => {
+  if(res.data.result==="success"){
 
     setcontentsDatas2(()=>res.data?.campaigns)
     }else{
       alert("데이터 로드 실패")
     }
-  }).catch((error)=>{
-    alert("데이터 로드 실패")
-  })
+}).catch(error => {
+  alert("데이터 로드 실패")
+});
+
+
 }
+
 useEffect(() => {
   
   sendApi()

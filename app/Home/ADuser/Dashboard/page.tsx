@@ -104,6 +104,7 @@ const [contentsDatas, setcontentsDatas] = useState<any>(
     "진행상태" : "입금대기"
   }
 )
+/** 
 const [contentsDatas2, setcontentsDatas2] = useState<any>( 
  [ {
   "썸네일":i2560.src,
@@ -127,6 +128,7 @@ const [contentsDatas2, setcontentsDatas2] = useState<any>(
   }
 ]
 )
+*/
 const [userStatistics, setuserStatistics] = useState([{title:"내 광고 게시 횟수",state:true},{title:"내 광고 노출 횟수",state:true},{title:"유동인구",state:true}])
 const InputText=(typename:any,value:any)=>{
   setuser((prev:any)=>{return{...prev,[typename]:value}})
@@ -146,7 +148,30 @@ const [SelectCheck, setSelectCheck] = useState()
 const [buttonlist, setbuttonlist] = useState<any>({상세보기:{state:true},반려:{state:true},승인:{state:true},입금확인:{state:true},중단:{state:false}})
 const [check_data, setcheck_data] = useState({})
 const [selectSpot, setselectSpot] = useState(spot[0].title)
+const [contentsDatas2, setcontentsDatas2] = useState<any>( 
+  [
+    {
+      "name": "광고1",
+      "camp_id": "1"
+    },
+    {
+      "name": "광고2",
+      "camp_id": "camp_id"
+    }
+ 
+  ]
 
+)  
+let findlist:any={
+  "name": "콘텐츠명", // 콘텐츠명
+  "category": "콘텐츠분류", // 콘텐츠분류
+  "display_type": "확장자", // 확장자
+  "asset_url": "썸네일", // 썸네일
+  "fit_type": "확장자", // 확장자
+  "start_date": "광고 시작일", // 시작일
+  "end_date": "광고 종료일", // 종료일
+  "status": "진행상황" // 진행상황
+}
 function paginateArray(array: string | any[], page: number, pageSize = 10) {
   // Start and end index for slicing the array
   const startIndex = (page - 1) * pageSize;
@@ -165,7 +190,7 @@ function paginateArray(array: string | any[], page: number, pageSize = 10) {
       <GridTitle title={"내 광고 목록"}/>
     
   <section className="w-full flex flex-col min-h-[20rem]">
-{contentsDatas2.map((items:any)=>(<>
+{/**contentsDatas2.map((items:any)=>(<>
       <div style={{zoom:zoom}} className="grid grid-cols-5 mt-[2%] w-full ">
   <div className="w-full h-full flex items-center justify-center">   
     <div className="p-2 w-full flex items-center justify-center bg-[#172731] py-[5%] rounded-md">       
@@ -187,6 +212,35 @@ function paginateArray(array: string | any[], page: number, pageSize = 10) {
     </div>
     <div className="  flex justify-start px-[4%] flex-col">
       <button className="text-[white] bg-[#485C6D] mb-[20%] items-center text-center justify-center py-[0.6rem] px-[1rem] text-[1rem] rounded-md min-w-[8rem] mr-[2%] mt-[2%]">상세내역</button>
+      <div className="w-full flex justify-end ">
+       { items["확장자"]==="image"? <Icon_image className={"h-12 w-12 object-cover"}/>:<Icon_movie className={"h-12 w-12 object-cover"}/>  }
+      </div> 
+      </div>
+  </div>
+</div>
+</>))**/}
+{contentsDatas2.map((items:any)=>(<>
+      <div style={{zoom:zoom}} className="grid grid-cols-5 mt-[2%] w-full ">
+  <div className="w-full h-full flex items-center justify-center">   
+    <div className="p-2 w-full flex items-center justify-center bg-[#172731] py-[5%] rounded-md">       
+    <Image className={`object-contain w-[12rem] h-[17rem] `} alt="" src={i2560}/>
+    </div>  
+    </div>
+  <div className="col-span-4  flex justify-between">
+
+  <div className="w-[96%] px-[2%] h-full flex items-center justify-start flex-col space-y-2 "> 
+    <p className="w-full flex flex-row  justify-start text-start text-2xl font-bold"><p className="">• {items["name"]}</p> <p className="pl-[2%] pr-[2%] text-[#CCCCCC]"> | </p> <p className="">옥외광고</p> <div/></p>
+        {Object.keys(items).map((item)=>item!=="썸네일"&&item!=="확장자"&&item!=="콘텐츠분류"&&item!=="선택구좌"&&item!=="camp_id"&&(<>
+        <span className="w-full flex flex-row  justify-between text-start text-sm">
+       <p className="bg-[#F0F0F0] text-center rounded-sm  py-[0.5rem] px-[1rem] min-w-[4rem] font-bold m-0 text-nowrap">{findlist[item]}</p>
+    <p className="font-bold m-0 py-[0.3rem] px-[1rem] w-full justify-start items-center">{items[item]}</p>  
+       </span> 
+        </>))}
+   
+   
+    </div>
+    <div className="  flex justify-start px-[4%] flex-col">
+      <button onClick={()=>router.push("/Home/ADuser/MyAD/MyADdetail"+`?data=${encodeURIComponent(JSON.stringify(items))}`)} className="text-[white] bg-[#485C6D] mb-[20%] items-center text-center justify-center py-[0.6rem] px-[1rem] text-[1rem] rounded-md min-w-[8rem] mr-[2%] mt-[2%]">상세내역</button>
       <div className="w-full flex justify-end ">
        { items["확장자"]==="image"? <Icon_image className={"h-12 w-12 object-cover"}/>:<Icon_movie className={"h-12 w-12 object-cover"}/>  }
       </div> 
